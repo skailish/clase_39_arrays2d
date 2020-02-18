@@ -11,10 +11,10 @@ let canciones = []; // la lista de canciones
 let ingresoNuevo = []; // lo que ingresa el usuario
 let busqueda = ""; // string de busqueda creado por el usuario
 let busquedaMensaje = ""; // string de busqueda para MENSAJE
-let mensajeBusqueda = ""; // para escribir artista y canción buscada
 let quiereSeguir = true; // variable bandera
 let descripcion = ""; // variable para describir lo que hizo
 let artistaExiste = false;
+let accion = "";
 
 // defino el mensaje para mostrar todo el array
 let muestroArray = "";
@@ -30,7 +30,7 @@ const opciones = `Elija una opción:
 
 while (quiereSeguir) {
 
-    let accion = prompt(opciones);
+    accion = prompt(opciones);
 
     switch (accion) {
         case "1":
@@ -48,14 +48,11 @@ while (quiereSeguir) {
 
                 }
             }
-            // else {
-            //     canciones.push(ingresoNuevo); // le agrego el array entero, que contiene artista y canción
-            // }
-            if (!artistaExiste) { // si el artista no existe
+            if (!artistaExiste) { // si el artista NO existe (si no se cambió a TRUE dentro del if anterior)
                 canciones.push(ingresoNuevo); // le agrego el array entero, que contiene artista y canción
             }
             descripcion = `Agregó la canción ${ingresoNuevo[1]}, artista ${ingresoNuevo[0]} a la lista.\n`;
-            artistaExiste = false; // lo vuelvo a false, para que no corra en proxima iteración
+            artistaExiste = false; // lo reseteo, para proxima iteración
             break
 
         case "2":
@@ -65,7 +62,7 @@ while (quiereSeguir) {
                 if (canciones[i][0] === busqueda) { // existe el artista
                     descripcion = `Se encontró a ${busqueda} en la lista.\n`
                     busquedaMensaje = "\n---------------------\nARTISTA\n" + canciones[i][0] + "\n---------------------\nCANCIONES\n"; // reseteo busqueda
-                    // bucle para recorrer el array y armar el mensaje de la lista
+                    // bucle para recorrer el array y sumar las canciones
                     for (let j = 1; j < canciones[i].length; j++) {
                         busquedaMensaje += canciones[i][j] + "\n";
                     }
@@ -75,7 +72,7 @@ while (quiereSeguir) {
 
             descripcion += busquedaMensaje;
 
-            if (artistaExiste === false) {
+            if (!artistaExiste) {
                 descripcion = `Lo siento, no se encontró a ${busqueda} en la lista.\n`
             }
 
