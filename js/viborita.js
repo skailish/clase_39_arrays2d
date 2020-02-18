@@ -39,7 +39,6 @@ let vibora = "🐍";
 
 // DEFINO VARIABLES DINAMICAS
 // defino las variables para concatenar en el mensaje
-let mensaje = "";
 let muestroArray = "";
 const opciones = `
 1- ARRIBA
